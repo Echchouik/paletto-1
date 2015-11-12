@@ -1,12 +1,13 @@
 'use strict';
 
-var Engine = function () {
+var Engine;
+Engine = function () {
 
 // private attributes and methods
     var grid = new Array(6);
 
 // public methods
-    this.init = function() {
+    this.init = function () {
         for (var i = 0; i < 6; i++) {
             grid[i] = new Array(6);
             for (var j; j < 6; j++) {
@@ -56,34 +57,61 @@ var Engine = function () {
         grid[5][5] = "black";
     };
 
-    this.juxta = function() {
+    this.juxta = function () {
         for (var i = 1; i < 5; i++) {
-            for(var j = 1; j < 5; j++){
-                if(grid[i - 1][j] == grid[i][j] || grid[i + 1][j] == grid[i][j]) {
+            for (var j = 1; j < 5; j++) {
+                if (grid[i - 1][j] == grid[i][j] || grid[i + 1][j] == grid[i][j]) {
                     return false;
-                }else if(grid[i][j - 1] == grid[i][j] || grid[i][j + 1] == grid[i][j]) {
+                } else if (grid[i][j - 1] == grid[i][j] || grid[i][j + 1] == grid[i][j]) {
                     return false;
-                }else if(grid[0][0] == grid[0][1] || grid[0][0] == grid[1][0]) {
+                } else if (grid[0][0] == grid[0][1] || grid[0][0] == grid[1][0]) {
                     return false;
-                }else if(grid[5][5] == grid[5][4] || grid[0][0] == grid[4][5]) {
+                } else if (grid[5][5] == grid[5][4] || grid[0][0] == grid[4][5]) {
                     return false;
-                }else if(grid[0][5] == grid[1][5] || grid[0][0] == grid[0][4]) {
+                } else if (grid[0][5] == grid[1][5] || grid[0][0] == grid[0][4]) {
                     return false;
-                }else if(grid[5][0] == grid[5][1] || grid[0][0] == grid[4][0]) {
+                } else if (grid[5][0] == grid[5][1] || grid[0][0] == grid[4][0]) {
                     return false;
-                }else {
+                } else {
                     return true;
                 }
             }
         }
     };
 
-    this.playerOne_choseColor = function(i, j) {
-        if(grid[i][j] === "yellow") {
+    this.playerOne_choseColor = function (i, j) {
+        if (grid[i][j] === "yellow") {
             return true;
         }
         return false;
     };
 
+    this.playerOne_takeBall = function(i,j) {
+        grid[i][j] = "NULLP1";
+    };
 
+    this.countGrid = function() {
+        var count = 0;
+        for(var i = 0; i < 6; i++) {
+            for(var j = 0; j < 6; j++) {
+                if(grid[i][j] == "NULLP1" || grid[i][j] == "NULLP2") {
+                    count--;
+                }
+                count++;
+            }
+        }
+        return count;
+    };
+
+    this.playerOne_score = function() {
+        var score = 0;
+        for(var i = 0; i < 6; i++) {
+            for(var j = 0; j < 6; j++) {
+                if(grid[i][j] == "NULLP1") {
+                    score++;
+                }
+            }
+        }
+        return score;
+    };
 };
