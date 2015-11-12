@@ -77,4 +77,13 @@ var Engine = function () {
             }
         }
     };
+
+    this.playerOne_choseColor = function(i, j) {
+        if(grid[i][j] === "yellow") {
+            return true;
+        }
+        return false;
+    };
+
+
 };
