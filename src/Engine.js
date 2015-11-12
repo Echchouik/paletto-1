@@ -114,4 +114,27 @@ Engine = function () {
         }
         return score;
     };
+
+    this.playerTwo_choseColor = function(i, j) {
+        if(grid[i][j] === "black") {
+            return true;
+        }
+        return false;
+    };
+
+    this.playerTwo_takeBall = function(i,j) {
+        grid[i][j] = "NULLP2";
+    };
+
+    this.playerTwo_score = function() {
+        var score = 0;
+        for(var i = 0; i < 6; i++) {
+            for(var j = 0; j < 6; j++) {
+                if(grid[i][j] == "NULLP2") {
+                    score++;
+                }
+            }
+        }
+        return score;
+    };
 };
